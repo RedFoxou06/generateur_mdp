@@ -26,6 +26,11 @@ def creation_mdp():
         password+=random.choice(char_possible)
     return affichage.config(text=password)
 
+def copie():
+    mdp.clipboard_clear()
+    copy=affichage.cget("text")
+    mdp.clipboard_append(copy)
+
 #squelette de base :
 mdp=Tk()
 mdp.title("Générateur de mot de passe")
@@ -37,5 +42,7 @@ generer=ttk.Button(mdp, text="Générer un mot de passe", command=creation_mdp)
 generer.pack()
 affichage=Label(mdp, text="")
 affichage.pack()
+copier=ttk.Button(mdp, text="Copier", command=copie)
+copier.pack()
 ttk.Button(mdp, text="Quitter", command=mdp.destroy).pack()
 mdp.mainloop()
