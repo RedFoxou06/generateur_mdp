@@ -23,8 +23,7 @@ def creation_mdp():
         return affichage.config(text="La longueur minimal est de 8 !")
 
     for i in range(length):
-        rand_index=random.randint(0, len(char_possible) - 1)
-        password+=char_possible[rand_index]
+        password+=random.choice(char_possible)
     return affichage.config(text=password)
 
 #squelette de base :
