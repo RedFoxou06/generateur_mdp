@@ -4,9 +4,23 @@ import random
 
 #fonction pour générer le mot de passe :
 def creation_mdp():
-    length=int(champ_saisi.get())
+    length=champ_saisi.get()
+    #gestion erreur
+    if length=="":
+        return affichage.config(text="Veuillez saisir une longueur !")
+
+    #gestion erreur
+    if not length.isdigit():
+        return affichage.config(text="Veuillez saisir un nombre !")
+
     char_possible="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-|"
     password=""
+    length=int(length)
+
+    #gestion erreur
+    if length<=7:
+        return affichage.config(text="La longueur minimal est de 8 !")
+
     for i in range(length):
         rand_index=random.randint(0, len(char_possible) - 1)
         password+=char_possible[rand_index]
