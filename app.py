@@ -12,8 +12,15 @@ def creation_mdp():
         password+=char_possible[rand_index]
     return affichage.config(text=password)
 
+#squelette de base :
 mdp=Tk()
 mdp.title("Générateur de mot de passe")
 mdp.geometry("450x450")
-
+Label(mdp, text="Longueur du mot de passe : ").pack()
+champ_saisi=(Entry(mdp))
+champ_saisi.pack()
+generer=ttk.Button(mdp, text="Générer un mot de passe", command=creation_mdp).pack()
+affichage=Label(mdp, text="")
+affichage.pack()
+ttk.Button(mdp, text="Quitter", command=mdp.destroy).pack()
 mdp.mainloop()
