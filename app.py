@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Label, Entry, Tk
 from tkinter import ttk
 import random
 
@@ -33,7 +33,8 @@ mdp.geometry("450x450")
 Label(mdp, text="Longueur du mot de passe : ").pack()
 champ_saisi=(Entry(mdp))
 champ_saisi.pack()
-generer=ttk.Button(mdp, text="Générer un mot de passe", command=creation_mdp).pack()
+generer=ttk.Button(mdp, text="Générer un mot de passe", command=creation_mdp)
+generer.pack()
 affichage=Label(mdp, text="")
 affichage.pack()
 ttk.Button(mdp, text="Quitter", command=mdp.destroy).pack()
