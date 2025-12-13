@@ -5,6 +5,7 @@ import random
 #fonction pour générer le mot de passe :
 def creation_mdp():
     length=champ_saisi.get()
+
     #gestion erreur
     if length=="":
         return affichage.config(text="Veuillez saisir une longueur !")
