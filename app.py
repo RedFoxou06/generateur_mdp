@@ -80,27 +80,27 @@ mdp.title("Générateur de mot de passe")
 #taille de la fenêtre
 mdp.geometry("450x450")
 #texte
-Label(mdp, text="Longueur du mot de passe : ").pack()
+Label(mdp, text="Longueur du mot de passe : ").grid(column=0, row=0)
 #input
 champ_saisi=(Entry(mdp))
-champ_saisi.pack()
+champ_saisi.grid(column=1, row=0)
 #bouton pour générer
 generer=ttk.Button(mdp, text="Générer un mot de passe", command=creation_mdp)
-generer.pack()
+generer.grid(columnspan=2, row=1)
 #affichage du mot de passe
 affichage=Label(mdp, text="", font="Courier")
-affichage.pack()
+affichage.grid(columnspan=2, row=2)
 #bouton pour copier
 copier=ttk.Button(mdp, text="Copier", command=copie)
-copier.pack()
+copier.grid(columnspan=2, row=3)
 #checkbutton pour ajouter des nombres
 var_nombre=BooleanVar()
 nombre=ttk.Checkbutton(mdp, text="Nombre", variable=var_nombre)
-nombre.pack()
+nombre.grid(column=0, row=4)
 #checkbutton pour ajouter des caractères spéciaux
 var_symbole=BooleanVar()
 symbole=ttk.Checkbutton(mdp, text="Symbole", variable=var_symbole)
-symbole.pack()
+symbole.grid(column=1, row=4)
 #bouton pour quitter
-ttk.Button(mdp, text="Quitter", command=mdp.destroy).pack()
+ttk.Button(mdp, text="Quitter", command=mdp.destroy).grid(columnspan=2, row=5)
 mdp.mainloop()
