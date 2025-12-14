@@ -13,6 +13,8 @@ def creation_mdp():
     global good
     length=champ_saisi.get()
 
+    char_possible=MINUSCULES+MAJUSCULES
+
     #gestion erreur
     if length=="":
         good=False
@@ -22,8 +24,6 @@ def creation_mdp():
     if not length.isdigit():
         good = False
         return affichage.config(text="Veuillez saisir un nombre !", fg="black")
-
-    char_possible=MINUSCULES+MAJUSCULES
 
     #ajout des nombres
     if var_nombre.get():
