@@ -1,10 +1,14 @@
-from tkinter import Label, Entry, Tk
+from tkinter import Label, Entry, Tk, BooleanVar
 from tkinter import ttk
 import random
 
 good=False
+MINUSCULES = "abcdefghijklmnopqrstuvwxyz"
+MAJUSCULES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+CHIFFRES = "0123456789"
+SYMBOLES = "!@#$%^&*()_+=-|"
 
-#fonction pour générer le mot de passe :
+#------------------------fonction pour générer le mot de passe------------------------
 def creation_mdp():
     global good
     length=champ_saisi.get()
@@ -19,7 +23,15 @@ def creation_mdp():
         good = False
         return affichage.config(text="Veuillez saisir un nombre !")
 
-    char_possible="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-|"
+    char_possible=MINUSCULES+MAJUSCULES
+
+    #ajout des nombres
+    if var_nombre.get():
+        char_possible+=CHIFFRES
+
+    #ajout des symboles
+    if var_symbole.get():
+        char_possible+=SYMBOLES
     password=""
     length=int(length)
 
@@ -33,6 +45,7 @@ def creation_mdp():
     good=True
     return affichage.config(text=password)
 
+#------------------------fonction pour copier le mot de passe------------------------
 def copie():
     #gestion erreur
     temp=affichage.cget("text")
@@ -49,18 +62,36 @@ def copie():
     copy=affichage.cget("text")
     return mdp.clipboard_append(copy)
 
-#squelette de base :
+
+
+#------------------------squelette de base------------------------
+#fenetre
 mdp=Tk()
 mdp.title("Générateur de mot de passe")
+#taille de la fenêtre
 mdp.geometry("450x450")
+#texte
 Label(mdp, text="Longueur du mot de passe : ").pack()
+#input
 champ_saisi=(Entry(mdp))
 champ_saisi.pack()
+#bouton pour générer
 generer=ttk.Button(mdp, text="Générer un mot de passe", command=creation_mdp)
 generer.pack()
-affichage=Label(mdp, text="")
+#affichage du mot de passe
+affichage=Label(mdp, text="", font="Courier")
 affichage.pack()
+#bouton pour copier
 copier=ttk.Button(mdp, text="Copier", command=copie)
 copier.pack()
+#checkbutton pour ajouter des nombres
+var_nombre=BooleanVar()
+nombre=ttk.Checkbutton(mdp, text="Nombre", variable=var_nombre)
+nombre.pack()
+#checkbutton pour ajouter des caractères spéciaux
+var_symbole=BooleanVar()
+symbole=ttk.Checkbutton(mdp, text="Symbole", variable=var_symbole)
+symbole.pack()
+#bouton pour quitter
 ttk.Button(mdp, text="Quitter", command=mdp.destroy).pack()
 mdp.mainloop()
