@@ -41,13 +41,13 @@ def copie():
         return affichage.config(text="Générer un mot de passe en premier !")
 
     #gestion erreur
-    if good==False:
+    if not good:
         mdp.clipboard_clear()
         return affichage.config(text="Générer un mot de passe en premier !")
 
     mdp.clipboard_clear()
     copy=affichage.cget("text")
-    mdp.clipboard_append(copy)
+    return mdp.clipboard_append(copy)
 
 #squelette de base :
 mdp=Tk()
