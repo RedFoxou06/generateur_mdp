@@ -16,12 +16,12 @@ def creation_mdp():
     #gestion erreur
     if length=="":
         good=False
-        return affichage.config(text="Veuillez saisir une longueur !")
+        return affichage.config(text="Veuillez saisir une longueur !", fg="black")
 
     #gestion erreur
     if not length.isdigit():
         good = False
-        return affichage.config(text="Veuillez saisir un nombre !")
+        return affichage.config(text="Veuillez saisir un nombre !", fg="black")
 
     char_possible=MINUSCULES+MAJUSCULES
 
@@ -38,11 +38,20 @@ def creation_mdp():
     #gestion erreur
     if length<=7:
         good=False
-        return affichage.config(text="La longueur minimal est de 8 !")
+        return affichage.config(text="La longueur minimal est de 8 !", fg="black")
 
     for i in range(length):
         password+=random.choice(char_possible)
     good=True
+
+    if len(password)<=10:
+        affichage.config(fg="red")
+
+    if 10 < len(password) <= 14:
+        affichage.config(fg="orange")
+
+    if len(password)>14 and var_symbole.get():
+        affichage.config(fg="green")
     return affichage.config(text=password)
 
 #------------------------fonction pour copier le mot de passe------------------------
@@ -51,12 +60,12 @@ def copie():
     temp=affichage.cget("text")
     if temp=="":
         mdp.clipboard_clear()
-        return affichage.config(text="Générer un mot de passe en premier !")
+        return affichage.config(text="Générer un mot de passe en premier !", fg="black")
 
     #gestion erreur
     if not good:
         mdp.clipboard_clear()
-        return affichage.config(text="Générer un mot de passe en premier !")
+        return affichage.config(text="Générer un mot de passe en premier !", fg="black")
 
     mdp.clipboard_clear()
     copy=affichage.cget("text")
