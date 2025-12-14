@@ -25,6 +25,7 @@ def creation_mdp():
 
     #gestion erreur
     if length<=7:
+        good=False
         return affichage.config(text="La longueur minimal est de 8 !")
 
     for i in range(length):
